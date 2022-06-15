@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
     // check if user already exists
 
     const email = await UsersModal.findOne({ email: useremail });
-    console.l0og("email", email);
+    console.log("email", email);
     if (email) {
       res.status(200).send({ message: "Email already exists" });
     } else {
