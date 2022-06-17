@@ -1,16 +1,33 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const CreateUser = () => {
-  const [date, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   const handleChange = (e) => {
-    setData({ ...date, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
+    const Url = "http://localhost:8000";
+    const uesrData = { ...data };
+    console.log(uesrData);
+
+    axios
+      .post(`${Url}/createUser`, uesrData)
+      .then((res) => {
+        console.log(res);
+        alert("User Created Successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("User Creation Failed", err);
+      });
+    return data;
   };
+
   return (
     <>
       <div className="mx-5 my-10">
@@ -28,7 +45,8 @@ const CreateUser = () => {
                 <input
                   id="username"
                   type="text"
-                  name="UserName"
+                  name="username"
+                  onChange={handleChange}
                   placeholder="Username"
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
@@ -41,6 +59,7 @@ const CreateUser = () => {
                   id="age"
                   type="number"
                   name="age"
+                  onChange={handleChange}
                   placeholder="Age "
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
@@ -50,9 +69,10 @@ const CreateUser = () => {
                   Email Address
                 </label>
                 <input
-                  id="emailAddress"
+                  id="email"
                   type="email"
-                  name="EmailAddress"
+                  onChange={handleChange}
+                  name="email"
                   placeholder="Email Address"
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
@@ -65,7 +85,8 @@ const CreateUser = () => {
                 <input
                   id="password"
                   type="password"
-                  name="Password"
+                  onChange={handleChange}
+                  name="password"
                   placeholder="Password"
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
@@ -79,8 +100,10 @@ const CreateUser = () => {
                   Password Confirmation
                 </label>
                 <input
-                  id="passwordConfirmation"
+                  id="confirmPassword"
                   type="password"
+                  name="confirmPassword"
+                  onChange={handleChange}
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
               </div>
@@ -89,8 +112,10 @@ const CreateUser = () => {
                   Phone
                 </label>
                 <input
-                  id="Phone"
+                  id="phone"
+                  name="phone"
                   type="text"
+                  onChange={handleChange}
                   class="block w-full px-4 py-2 mt-2 text-black bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
               </div>

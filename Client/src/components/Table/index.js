@@ -2,7 +2,6 @@ import React from "react";
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
 import Scroll from "../Scroll";
-import { TbEdit } from "react-icons/tb";
 
 const UserTable = ({ SearchFilter }) => {
   return (
@@ -35,7 +34,7 @@ const UserTable = ({ SearchFilter }) => {
                           <p className="text-sm font-medium  bg-clip-text bg-gradient-to-r from-red-400 to-red-600"></p>
                           <ul className="flex space-x-1">
                             <li className="inline-block rounded-full text-white text-xs font-medium px-3 py-1.5 bg-gray-800">
-                              <TbEdit size={30} />
+                              Edit
                             </li>
                             <li className="inline-block rounded-full text-white text-xs font-medium px-3 py-1.5 bg-gray-800">
                               Delete

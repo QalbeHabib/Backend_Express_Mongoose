@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TbEdit } from "react-icons/tb";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 import { BiAddToQueue } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const Url = "http://localhost:8000";
 
 const UserTable2 = ({ SearchFilter }) => {
+  const navigate = useNavigate();
+  const handleDelete = (id) => {
+    console.log(id, "habib");
+    axios.delete(`${Url}/deleteUser/${id}`).then((res) => {
+      console.log(res, "res");
+      navigate("/");
+      navigate("/allusers");
+    });
+  };
   return (
     <div>
       <section className="text-gray-600 body-font mx-5">
@@ -36,33 +48,7 @@ const UserTable2 = ({ SearchFilter }) => {
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {SearchFilter.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="px-4 py-3 ">{item.name}</td>
-                      <td className="px-4 py-3">{item.age}</td>
-                      <td className="px-4 py-3">{item.email}</td>
-                      <td className="px-4 py-3">{item.Password}</td>
-                      <td className="px-4 py-3">{item.phone}</td>
-                      <td className="px-4 py-3">{item.Date}</td>
-                      <td className="px-4 py-3 space-x-2">
-                        <Link to="/">
-                          <button className="border border-green-500 hover:bg-green-700 text-black font-bold hover:text-white transition duration-500 py-2 px-4 rounded">
-                            <BiAddToQueue />
-                          </button>
-                        </Link>
-                        <button className="border-blue-500 border  hover:bg-blue-700 text-black hover:text-white transition duration-500 scale-105 font-bold py-2 px-4 rounded">
-                          <TbEdit />
-                        </button>
-                        <button className="border border-red-500 hover:bg-red-700 text-black font-bold hover:text-white transition duration-500 py-2 px-4 rounded">
-                          <MdOutlineDeleteSweep />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
+              
             </table>
           </div>
         </div>

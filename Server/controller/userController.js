@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
     const email = await UsersModal.findOne({ email: useremail });
     console.log("email", email);
     if (email) {
-      res.status(200).send({ message: "Email already exists" });
+      res.status(400).send({ message: "Email already exists" });
     } else {
       const result = await UsersModal.create(newUser);
       result.save();

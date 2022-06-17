@@ -2,30 +2,31 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
-    required: true,
-    trim: true,
   },
   age: {
     type: Number,
-    required: true,
   },
   email: {
     type: String,
-    required: true,
-    lowercase: true,
-    trim: true,
-  
   },
   password: {
     type: String,
-    required: true,
-    // unique: true,
+  },
+  confirmPassword: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
   },
   phone: {
-    type: Number,
-    required: true,
+    type: String,
   },
 });
 
