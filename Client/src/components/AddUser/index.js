@@ -6,14 +6,12 @@ const CreateUser = () => {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const Url = "http://localhost:8000";
     const uesrData = { ...data };
-    console.log(uesrData);
 
     axios
       .post(`${Url}/createUser`, uesrData)

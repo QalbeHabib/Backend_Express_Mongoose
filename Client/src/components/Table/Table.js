@@ -10,7 +10,6 @@ const Url = "http://localhost:8000";
 const UserTable2 = ({ SearchFilter }) => {
   const navigate = useNavigate();
   const handleDelete = (id) => {
-    console.log(id, "habib");
     axios.delete(`${Url}/deleteUser/${id}`).then((res) => {
       console.log(res, "res");
       navigate("/");

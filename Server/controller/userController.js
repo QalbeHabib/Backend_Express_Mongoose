@@ -39,14 +39,17 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   const _id = req.params.id;
   try {
-    const { name, email, password } = req.body;
+    const { username, age, email, password, confirmPassword, phone } = req.body;
 
     const result = await UsersModal.findByIdAndUpdate(
       _id,
       {
-        name,
+        username,
+        age,
         email,
         password,
+        confirmPassword,
+        phone,
       },
       { new: true }
     );
